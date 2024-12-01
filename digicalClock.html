@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.clock{
+			width: 600px;
+			background: black;
+			margin: auto;
+			padding: 30px 0;
+			text-align: center;
+			color: skyblue;
+			border-radius: 20px;
+		}
+		.time{
+			font-size: 70px;
+		}
+		.date{
+			font-size: 40px;
+			padding-top: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<div class="time">00 : 00 : 00 : 00</div>
+		<div class="date">0000000000</div>
+	</div>
+</body>
+<script type="text/javascript">
+	let timeDiv = document.querySelector('.time');
+	let dateDiv = document.querySelector('.date');
+
+	const digiClock = ()=>{
+		let currentTime = new Date();
+		let date = currentTime.toDateString();
+		let hour = currentTime.getHours();
+		let minute = currentTime.getMinutes();
+		let second = currentTime.getSeconds();
+		let amPm = (hour >= 12) ? 'PM' : 'AM';
+
+		hour = (hour > 12) ? (hour - 12) : hour;
+		hour = (hour < 10) ? '0' + hour : hour;
+		minute = (minute < 10) ? '0' + minute : minute;
+		second = (second < 10) ? '0' + second : second;
+
+		dateDiv.innerHTML = date;
+		timeDiv.innerHTML = `${hour} : ${minute} : ${second} : ${amPm}`;
+
+	}
+
+	setInterval(digiClock,1000);
+</script>
+</html>
